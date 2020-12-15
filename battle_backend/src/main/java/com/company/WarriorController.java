@@ -29,9 +29,8 @@ public class WarriorController {
     }
 
     @RequestMapping(value = "/warriors/{id}")
-    public ResponseEntity<Warrior> getWarrior(@PathVariable("id") String id, @RequestBody Warrior warrior){
-        warriorRegister.get(id);
-        return new ResponseEntity<>(warrior, HttpStatus.OK);
+    public ResponseEntity<Warrior> getWarrior(@PathVariable("id") String id){
+        return new ResponseEntity<>(warriorRegister.get(id), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/warriors", method = RequestMethod.POST)
@@ -51,6 +50,6 @@ public class WarriorController {
     @RequestMapping(value = "/warriors/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> delete(@PathVariable("id") String id) {
         warriorRegister.remove(id);
-        return new ResponseEntity<>("Product was deleted", HttpStatus.OK);
+        return new ResponseEntity<>("Warrior was deleted", HttpStatus.OK);
     }
 }
