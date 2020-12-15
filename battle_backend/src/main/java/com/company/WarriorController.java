@@ -35,13 +35,13 @@ public class WarriorController {
     }
 
     @RequestMapping(value = "/warriors", method = RequestMethod.POST)
-    public ResponseEntity<Warrior> createProduct(@RequestBody Warrior warrior) {
+    public ResponseEntity<Warrior> createWarrior(@RequestBody Warrior warrior) {
         warriorRegister.put(warrior.getId(), warrior);
         return new ResponseEntity<>(warrior, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/warriors/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Warrior> updateProduct(@PathVariable("id") String id, @RequestBody Warrior warrior) {
+    public ResponseEntity<Warrior> updateWarrior(@PathVariable("id") String id, @RequestBody Warrior warrior) {
         warriorRegister.remove(id);
         warrior.setId(id);
         warriorRegister.put(id, warrior);
