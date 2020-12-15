@@ -2,10 +2,7 @@ package com.company;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -31,9 +28,29 @@ public class WarriorController {
         return new ResponseEntity<>(warriorRegister.values(), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/warriors/{id}")
+    public ResponseEntity<Warrior> getWarrior(@PathVariable("id") String id, @RequestBody Warrior warrior){
+        warriorRegister.get(id);
+        return new ResponseEntity<>(warrior, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/warriors", method = RequestMethod.POST)
     public ResponseEntity<Warrior> createProduct(@RequestBody Warrior warrior) {
         warriorRegister.put(warrior.getId(), warrior);
         return new ResponseEntity<>(warrior, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/warriors/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Warrior> updateProduct(@PathVariable("id") String id, @RequestBody Warrior warrior) {
+        warriorRegister.remove(id);
+        warrior.setId(id);
+        warriorRegister.put(id, warrior);
+        return new ResponseEntity<>(warrior, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/warriors/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> delete(@PathVariable("id") String id) {
+        warriorRegister.remove(id);
+        return new ResponseEntity<>("Product was deleted", HttpStatus.OK);
     }
 }
