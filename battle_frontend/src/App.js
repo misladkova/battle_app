@@ -15,7 +15,9 @@ const App = () => {
         const newWarriorPromise = warriorsService.addWarriorServer(warriorObj)
         setNewName("")
         const response = await newWarriorPromise
+        console.log("r", response)
         const newWarriors = warriors.concat(response)
+        console.log(newWarriors)
         setWarriors(newWarriors)
     }
 
