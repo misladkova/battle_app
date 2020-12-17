@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class WarriorController {
     private static Map<String, Warrior> warriorRegister = new HashMap<>();
