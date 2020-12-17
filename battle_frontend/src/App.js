@@ -8,8 +8,9 @@ const App = () => {
     const [newName, setNewName] = useState("")
     const [warriors, setWarriors] = useState([])
 
-    useEffect(() => {
-        warriorsService.getWarriorsServer().then(warriors=>setWarriors(warriors))
+    useEffect(async () => {
+        const wars = await warriorsService.getWarriorsServer()
+        setWarriors(wars.data)
     }, [])
 
     const handleCreate = async (event) => {
@@ -38,7 +39,7 @@ const App = () => {
         const newWarriors = warriors.filter(x => x.id !== id)
         setWarriors(newWarriors)
     }
-
+    console.log("warriorsssss:", warriors)
     return (
         <div>
             <h2>Battle</h2>
