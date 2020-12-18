@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Component} from "react";
+import React, {useState, useEffect} from "react";
 import warriorsService from "./services/warriors";
 import Warrior from "./components/Warrior";
 import WarriorForm from "./components/WarriorForm";
@@ -8,8 +8,9 @@ const App = () => {
 
     const [newName, setNewName] = useState("")
     const [warriors, setWarriors] = useState([])
-    const [inBattle, setInBattle] = useState([])
     const [options, setOptions] = useState([])
+    const [firstSelect, setFirstSelect] = useState("")
+    const [secondSelect, setSecondSelect] = useState("")
 
     async function fetchData() {
         const wars = await warriorsService.getWarriorsServer()
@@ -42,7 +43,6 @@ const App = () => {
             "label": x.name
         }))
         setOptions(opt)
-
     }
 
     const handleUpdate = async () => {
@@ -62,6 +62,14 @@ const App = () => {
     }
     console.log("warriorsssss:", warriors)
 
+    const handleFirstSelect = (event) => {
+        setFirstSelect(event.value)
+    }
+
+    const handleSecondSelect = (event) => {
+        setSecondSelect(event.value)
+    }
+
     const handleFight = () => {
 
     }
@@ -73,8 +81,10 @@ const App = () => {
             {warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} handleDelete={handleDelete}
                                               handleUpdate={handleUpdate}/>)}
             <WarriorForm name={newName} setNewName={setNewName} handleCreate={handleCreate}/>
-            <Select options={options}/>
-            {inBattle.map(x => <Warrior key={x.id} warrior={x}/>)}
+            <h4>Choose first player:</h4>
+            <Select options={options} onChange={handleFirstSelect}/>
+            <h4>Choose second player:</h4>
+            <Select options={options} onChange={handleSecondSelect}/>
             <button onClick={handleFight}>fight</button>
         </div>
     )
