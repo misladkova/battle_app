@@ -21,6 +21,7 @@ public class Main {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/warriors").allowedOrigins("http://localhost:3000");
+                registry.addMapping("/warriors/{id}").allowedOrigins("http://localhost:3000");
             }
         };
     }
