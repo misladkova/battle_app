@@ -8,9 +8,13 @@ const App = () => {
     const [newName, setNewName] = useState("")
     const [warriors, setWarriors] = useState([])
 
-    useEffect(async () => {
+    async function fetchData(){
         const wars = await warriorsService.getWarriorsServer()
         setWarriors(wars.data)
+    }
+
+    useEffect(() => {
+        fetchData()
     }, [])
 
     const handleCreate = async (event) => {
@@ -23,7 +27,7 @@ const App = () => {
         setNewName("")
         const response = await newWarriorPromise
         console.log("r", response)
-        const newWarriors = warriors.concat(response)
+        const newWarriors = warriors.concat(response.data)
         console.log("l", newWarriors)
         setWarriors(newWarriors)
     }
