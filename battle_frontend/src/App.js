@@ -22,7 +22,6 @@ const App = () => {
         console.log("aaa")
 
         const warriorObj = {name: newName, id: warriors.length + 1}
-        console.log("w", warriorObj)
         const newWarriorPromise = warriorsService.addWarriorServer(warriorObj)
         setNewName("")
         const response = await newWarriorPromise
