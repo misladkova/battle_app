@@ -1,11 +1,13 @@
 package com.company;
 
+import java.util.Random;
+
 public class Warrior{
     private String id;
     private String name;
-    private int strength;
-    private int speed;
-    private int toughness;
+    private int strength = new Random().nextInt(1000);
+    private int speed = new Random().nextInt(1000);
+    private int toughness = new Random().nextInt(1000);
 
     public String getId(){
         return id;
@@ -19,16 +21,32 @@ public class Warrior{
         this.name = name;
     }
 
-    public void setStrength(int strength){
+    public String getName() {
+        return name;
+    }
+
+    public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    public void setSpeed(int speed){
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 
-    public void setToughness(int toughness){
+    public void setToughness(int toughness) {
         this.toughness = toughness;
+    }
+
+    public int getToughness() {
+        return toughness;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int getStrength() {
+        return strength;
     }
 }
 
