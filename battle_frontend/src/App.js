@@ -63,16 +63,21 @@ const App = () => {
     console.log("warriorsssss:", warriors)
 
     const handleFirstSelect = (event) => {
-        setFirstSelect(event.value)
+        const x = event.value
+        setFirstSelect(x.toString())
     }
 
     const handleSecondSelect = (event) => {
-        setSecondSelect(event.value)
+        const x = event.value
+        setSecondSelect(x.toString())
     }
 
     const handleFight = () => {
 
     }
+
+    console.log("firs", firstSelect)
+    console.log("seco", secondSelect)
 
     return (
         <div>
