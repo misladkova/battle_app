@@ -16,11 +16,17 @@ public class WarriorController {
         Warrior first = new Warrior();
         first.setId("1");
         first.setName("First");
+        first.setStrength(50);
+        first.setSpeed(10);
+        first.setToughness(54);
         warriorRegister.put(first.getId(), first);
 
         Warrior second = new Warrior();
         second.setId("2");
         second.setName("Second");
+        first.setStrength(98);
+        first.setSpeed(12);
+        first.setToughness(44);
         warriorRegister.put(second.getId(), second);
     }
 
