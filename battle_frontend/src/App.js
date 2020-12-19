@@ -11,6 +11,7 @@ const App = () => {
     const [options, setOptions] = useState([])
     const [firstSelect, setFirstSelect] = useState("")
     const [secondSelect, setSecondSelect] = useState("")
+    const [duels, setDuels] = useState([])
 
     async function fetchData() {
         const wars = await warriorsService.getWarriorsServer()
@@ -49,6 +50,7 @@ const App = () => {
     }
 
     const handleDelete = async (id) => {
+        console.log("dddddd", id)
         const newWarriorPromise = warriorsService.deleteWarriorServer(id)
         const response = await newWarriorPromise
         console.log(response)
@@ -72,8 +74,12 @@ const App = () => {
         setSecondSelect(x.toString())
     }
 
-    const handleFight = () => {
-
+    const handleFight = async (id1, id2) => {
+        const newWarriorPromise = warriorsService.getBattleServer(id1, id2)
+        const response = await newWarriorPromise
+        console.log("fjhfv", newWarriorPromise)
+        console.log("dds", response.data)
+        setDuels(response.data)
     }
 
     console.log("firs", firstSelect)
@@ -90,7 +96,7 @@ const App = () => {
             <Select options={options} onChange={handleFirstSelect}/>
             <h4>Choose second player:</h4>
             <Select options={options} onChange={handleSecondSelect}/>
-            <button onClick={handleFight}>fight</button>
+            <button onClick={() => handleFight(firstSelect, secondSelect)}>fight</button>
         </div>
     )
 }
