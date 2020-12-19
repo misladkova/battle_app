@@ -2,22 +2,22 @@ package com.company;
 
 public class Duel {
 
-    private String rivalId1;
-    private String rivalId2;
+    private String rivalName1;
+    private String rivalName2;
     private String winner;
 
     public Duel(String id1, String id2){
-        rivalId1 = id1;
-        rivalId2 = id2;
+        rivalName1 = id1;
+        rivalName2 = id2;
         calculate();
     }
 
-    public String getRivalId1(){
-        return rivalId1;
+    public String getRivalName1(){
+        return rivalName1;
     }
 
-    public String getRivalId2(){
-        return rivalId2;
+    public String getRivalName2(){
+        return rivalName2;
     }
 
     public String getWinner(){
@@ -25,6 +25,6 @@ public class Duel {
     }
 
     private void calculate(){
-        winner = rivalId1;
+        winner = rivalName1;
     }
 }
