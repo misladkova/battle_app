@@ -5,7 +5,7 @@ const Warrior = ({warrior, handleUpdate, handleDelete}) => {
     return (
         <li>bojovnik: {warrior.id} {warrior.name}, strength: {warrior.strength}, speed: {warrior.speed},
             toughness: {warrior.toughness}
-            <button onClick={handleUpdate}>update</button>
+            <button onClick={() => handleUpdate(warrior.id)}>update</button>
             <button onClick={() =>
                 handleDelete(warrior.id)}>delete
             </button>
