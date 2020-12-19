@@ -3,6 +3,7 @@ import warriorsService from "./services/warriors";
 import Warrior from "./components/Warrior";
 import WarriorForm from "./components/WarriorForm";
 import Select from "react-select";
+import Duel from "./components/Duel";
 
 const App = () => {
 
@@ -23,8 +24,14 @@ const App = () => {
         setOptions(opt)
     }
 
+    async function fetchDuels(){
+        const battles = await warriorsService.getAllDuelsServer()
+        setDuels(battles.data)
+    }
+
     useEffect(() => {
         fetchData()
+        fetchDuels()
     }, [])
 
     const handleCreate = async (event) => {
@@ -65,12 +72,12 @@ const App = () => {
     console.log("warriorsssss:", warriors)
 
     const handleFirstSelect = (event) => {
-        const x = event.value
+        const x = event.label
         setFirstSelect(x.toString())
     }
 
     const handleSecondSelect = (event) => {
-        const x = event.value
+        const x = event.label
         setSecondSelect(x.toString())
     }
 
@@ -97,8 +104,10 @@ const App = () => {
             <h4>Choose second player:</h4>
             <Select options={options} onChange={handleSecondSelect}/>
             <button onClick={() => handleFight(firstSelect, secondSelect)}>fight</button>
+            <h4>History of battles:</h4>
+            {duels.map(duel=> <Duel duel={duel}/>)}
         </div>
     )
 }
 
-export default App;
+export default App
