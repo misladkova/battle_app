@@ -4,9 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -28,6 +26,14 @@ public class WarriorController {
         second.setSpeed(second.getSpeed());
         second.setStrength(second.getStrength());
         warriorRegister.put(second.getId(), second);
+    }
+
+    private static ArrayList<Duel> duelRegister = new ArrayList<>();
+    static {
+        Duel duel1 = new Duel("1", "2");
+        duelRegister.add(duel1);
+        Duel duel2 = new Duel("2", "1");
+        duelRegister.add(duel2);
     }
 
     @RequestMapping(value = "/warriors")
@@ -58,5 +64,17 @@ public class WarriorController {
     public ResponseEntity<String> delete(@PathVariable("id") String id) {
         warriorRegister.remove(id);
         return new ResponseEntity<>("Warrior was deleted", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/warriors/{id1}/{id2}")
+    public ResponseEntity<ArrayList<Duel>> getBattle(@PathVariable("id1") String id1, @PathVariable("id2") String id2) {
+        Duel duel = new Duel(id1, id2);
+        duelRegister.add(duel);
+        return new ResponseEntity<>(duelRegister, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/warriors/duels")
+    public ResponseEntity<ArrayList<Duel>> getDuels() {
+        return new ResponseEntity<>(duelRegister, HttpStatus.OK);
     }
 }
