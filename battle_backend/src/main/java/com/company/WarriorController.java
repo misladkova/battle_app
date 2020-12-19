@@ -30,9 +30,9 @@ public class WarriorController {
 
     private static ArrayList<Duel> duelRegister = new ArrayList<>();
     static {
-        Duel duel1 = new Duel("1", "2");
+        Duel duel1 = new Duel("One", "Two");
         duelRegister.add(duel1);
-        Duel duel2 = new Duel("2", "1");
+        Duel duel2 = new Duel("Two", "One");
         duelRegister.add(duel2);
     }
 
