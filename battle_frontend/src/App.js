@@ -2,17 +2,15 @@ import React, {useState, useEffect} from "react";
 import warriorsService from "./services/warriors";
 import Warrior from "./components/Warrior";
 import WarriorForm from "./components/WarriorForm";
-import Select from "react-select";
 import Duel from "./components/Duel";
 import UpdateForm from "./components/UpdateForm";
+import Fight from "./components/Fight";
 
 const App = () => {
 
     const [newName, setNewName] = useState("")
     const [warriors, setWarriors] = useState([])
     const [options, setOptions] = useState([])
-    const [firstSelect, setFirstSelect] = useState("")
-    const [secondSelect, setSecondSelect] = useState("")
     const [duels, setDuels] = useState([])
     const [upId, setUpId] = useState("")
 
@@ -74,27 +72,6 @@ const App = () => {
     }
     console.log("warriorsssss:", warriors)
 
-    const handleFirstSelect = (event) => {
-        const x = event.label
-        setFirstSelect(x.toString())
-    }
-
-    const handleSecondSelect = (event) => {
-        const x = event.label
-        setSecondSelect(x.toString())
-    }
-
-    const handleFight = async (id1, id2) => {
-        const newWarriorPromise = warriorsService.getBattleServer(id1, id2)
-        const response = await newWarriorPromise
-        console.log("fjhfv", newWarriorPromise)
-        console.log("dds", response.data)
-        setDuels(response.data)
-    }
-
-    console.log("firs", firstSelect)
-    console.log("seco", secondSelect)
-
     return (
         <div>
             <h2>Battle</h2>
@@ -102,11 +79,7 @@ const App = () => {
             {warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} handleDelete={handleDelete}
                                               handleUpdate={handleUpdate}/>)}
             <WarriorForm name={newName} setNewName={setNewName} handleCreate={handleCreate}/>
-            <h4>Choose first player:</h4>
-            <Select options={options} onChange={handleFirstSelect}/>
-            <h4>Choose second player:</h4>
-            <Select options={options} onChange={handleSecondSelect}/>
-            <button onClick={() => handleFight(firstSelect, secondSelect)}>fight</button>
+            <Fight options={options} setDuels={setDuels}/>
             <h4>History of battles:</h4>
             {duels.map(duel=> <Duel duel={duel}/>)}
             <UpdateForm warriors={warriors} setWarriors={setWarriors} upId={upId}/>
