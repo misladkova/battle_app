@@ -38,30 +38,30 @@ public class Main implements CommandLineRunner{
     public void run(String... args) throws Exception {
         System.out.println("Collection Exists? " + mongoTemplate.collectionExists("warriors"));
 
-        Warrior warrior = new Warrior();
-        warrior.setId("1");
-        warrior.setName("FirstWarrior");
-        warrior.setToughness(warrior.getToughness());
-        warrior.setSpeed(warrior.getSpeed());
-        warrior.setStrength(warrior.getStrength());
-        mongoTemplate.insert(warrior);
-
-        Criteria criteria = Criteria.where("id").is("3");
-        Query query = Query.query(criteria);
-        Warrior warrior1 = mongoTemplate.findOne(query, Warrior.class);
-        System.out.println(warrior1);
-
-        Criteria criteria1 = Criteria.where("id").is("3");
-        Query query1 = Query.query(criteria1);
-        DeleteResult deleteResult= mongoTemplate.remove(query1, Warrior.class);
-        System.out.println("Deleted documents: " + deleteResult.getDeletedCount()); // prints deleted documents as 1
-
-        Query query2 = new Query(new Criteria("id").is("5"));
-        Update update = new Update().set("name", "Third");
-
-
-        UpdateResult result = mongoTemplate.updateFirst(query2, update, Warrior.class);
-        System.out.println("Modified documents: " + result.getModifiedCount()); // prints modified count as 1
+//        Warrior warrior = new Warrior();
+//        warrior.setId("1");
+//        warrior.setName("FirstWarrior");
+//        warrior.setToughness(warrior.getToughness());
+//        warrior.setSpeed(warrior.getSpeed());
+//        warrior.setStrength(warrior.getStrength());
+//        mongoTemplate.insert(warrior);
+//
+//        Criteria criteria = Criteria.where("id").is("3");
+//        Query query = Query.query(criteria);
+//        Warrior warrior1 = mongoTemplate.findOne(query, Warrior.class);
+//        System.out.println(warrior1);
+//
+//        Criteria criteria1 = Criteria.where("id").is("3");
+//        Query query1 = Query.query(criteria1);
+//        DeleteResult deleteResult= mongoTemplate.remove(query1, Warrior.class);
+//        System.out.println("Deleted documents: " + deleteResult.getDeletedCount());
+//
+//        Query query2 = new Query(new Criteria("id").is("5"));
+//        Update update = new Update().set("name", "Third");
+//
+//
+//        UpdateResult result = mongoTemplate.updateFirst(query2, update, Warrior.class);
+//        System.out.println("Modified documents: " + result.getModifiedCount());
     }
 
     @Bean

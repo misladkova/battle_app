@@ -40,7 +40,7 @@ const App = () => {
         event.preventDefault()
         console.log("aaa")
 
-        const warriorObj = {name: newName, id: warriors.length + 1}
+        const warriorObj = {name: newName, id: Math.round(Math.random() * 1000000)}
         const newWarriorPromise = warriorsService.addWarriorServer(warriorObj)
         setNewName("")
         const response = await newWarriorPromise
