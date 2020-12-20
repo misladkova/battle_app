@@ -5,7 +5,9 @@ const UpdateForm = ({warriors, setWarriors, upId}) => {
 
     const [updatedName, setUpdatedName] = useState("")
 
-    const handleChange = async () => {
+    const handleChange = async (event) => {
+        event.preventDefault()
+
         const x = warriors.find(a=>a.id===upId)
         const updatedWarrior = {...x, name: updatedName}
         console.log("aaa", updatedName)
@@ -13,19 +15,21 @@ const UpdateForm = ({warriors, setWarriors, upId}) => {
         console.log("bbb", updatedWarrior)
         const response = await newWarriorPromise
         console.log("ccc", response)
-        const newWarriors = warriors.map(w=> w.name!==updatedName ? w: response.data)
+        console.log("before", warriors)
+        const newWarriors = warriors.map(w=> w.name!==x.name ? w: response.data)
+        console.log("afteer", newWarriors)
         setWarriors(newWarriors)
         setUpdatedName("")
     }
     return(
         <div>
             <h4>Update the warrior:</h4>
-            <form>
+            <form onSubmit={handleChange}>
                 <div>
                     New name: <input type="text" value={updatedName} onChange={({target}) =>
                     setUpdatedName(target.value)}/>
                 </div>
-                <button id="update-button" onClick={handleChange}>change</button>
+                <button id="update-button">change</button>
             </form>
         </div>
     )
