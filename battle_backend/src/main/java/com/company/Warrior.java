@@ -1,8 +1,12 @@
 package com.company;
 
 import java.util.Random;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "warriors")
 public class Warrior{
+    @Id
     private String id;
     private String name;
     private int strength = new Random().nextInt(1000);
