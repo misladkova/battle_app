@@ -33,31 +33,12 @@ const App = () => {
         fetchDuels()
     }, [])
 
-    const handleUpdate = async (id) => {
-        setUpId(id)
-    }
-
-    const handleDelete = async (id) => {
-        console.log("dddddd", id)
-        const newWarriorPromise = warriorsService.deleteWarriorServer(id)
-        const response = await newWarriorPromise
-        console.log(response)
-        const newWarriors = warriors.filter(x => x.id !== id)
-        setWarriors(newWarriors)
-        const opt = newWarriors.map(x => ({
-            "value": x.id,
-            "label": x.name
-        }))
-        setOptions(opt)
-    }
-    console.log("warriorsssss:", warriors)
-
     return (
         <div>
             <h2>Battle</h2>
             <h4>List of warriors:</h4>
-            {warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} handleDelete={handleDelete}
-                                              handleUpdate={handleUpdate}/>)}
+            {warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} warriors={warriors} setWarriors={setWarriors}
+            setOptions={setOptions} setUpId={setUpId}/>)}
             <CreateForm setWarriors={setWarriors} warriors={warriors} setOptions={setOptions}/>
             <Fight options={options} setDuels={setDuels}/>
             <h4>History of battles:</h4>
