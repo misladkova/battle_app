@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from "react";
 import warriorsService from "./services/warriors";
 import Warrior from "./components/Warrior";
-import WarriorForm from "./components/WarriorForm";
+import CreateForm from "./components/CreateForm";
 import Duel from "./components/Duel";
 import UpdateForm from "./components/UpdateForm";
 import Fight from "./components/Fight";
 
 const App = () => {
 
-    const [newName, setNewName] = useState("")
     const [warriors, setWarriors] = useState([])
     const [options, setOptions] = useState([])
     const [duels, setDuels] = useState([])
@@ -33,25 +32,6 @@ const App = () => {
         fetchData()
         fetchDuels()
     }, [])
-
-    const handleCreate = async (event) => {
-        event.preventDefault()
-        console.log("aaa")
-
-        const warriorObj = {name: newName, id: Math.round(Math.random() * 1000000)}
-        const newWarriorPromise = warriorsService.addWarriorServer(warriorObj)
-        setNewName("")
-        const response = await newWarriorPromise
-        console.log("r", response)
-        const newWarriors = warriors.concat(response.data)
-        console.log("l", newWarriors)
-        setWarriors(newWarriors)
-        const opt = newWarriors.map(x => ({
-            "value": x.id,
-            "label": x.name
-        }))
-        setOptions(opt)
-    }
 
     const handleUpdate = async (id) => {
         setUpId(id)
@@ -78,7 +58,7 @@ const App = () => {
             <h4>List of warriors:</h4>
             {warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} handleDelete={handleDelete}
                                               handleUpdate={handleUpdate}/>)}
-            <WarriorForm name={newName} setNewName={setNewName} handleCreate={handleCreate}/>
+            <CreateForm setWarriors={setWarriors} warriors={warriors} setOptions={setOptions}/>
             <Fight options={options} setDuels={setDuels}/>
             <h4>History of battles:</h4>
             {duels.map(duel=> <Duel duel={duel}/>)}
