@@ -4,6 +4,7 @@ import Warrior from "./components/Warrior";
 import WarriorForm from "./components/WarriorForm";
 import Select from "react-select";
 import Duel from "./components/Duel";
+import UpdateForm from "./components/UpdateForm";
 
 const App = () => {
 
@@ -13,7 +14,6 @@ const App = () => {
     const [firstSelect, setFirstSelect] = useState("")
     const [secondSelect, setSecondSelect] = useState("")
     const [duels, setDuels] = useState([])
-    const [updatedName, setUpdatedName] = useState("")
     const [upId, setUpId] = useState("")
 
     async function fetchData() {
@@ -57,19 +57,6 @@ const App = () => {
 
     const handleUpdate = async (id) => {
         setUpId(id)
-    }
-
-    const handleChange = async () => {
-        const x = warriors.find(a=>a.id===upId)
-        const updatedWarrior = {...x, name: updatedName}
-        console.log("aaa", updatedName)
-        const newWarriorPromise = warriorsService.updateWarriorServer(upId, updatedWarrior)
-        console.log("bbb", updatedWarrior)
-        const response = await newWarriorPromise
-        console.log("ccc", response)
-        const newWarriors = warriors.map(w=> w.name!==updatedName ? w: response.data)
-        setWarriors(newWarriors)
-        setUpdatedName("")
     }
 
     const handleDelete = async (id) => {
@@ -122,14 +109,7 @@ const App = () => {
             <button onClick={() => handleFight(firstSelect, secondSelect)}>fight</button>
             <h4>History of battles:</h4>
             {duels.map(duel=> <Duel duel={duel}/>)}
-            <h4>Update the warrior:</h4>
-            <form>
-                <div>
-                    New name: <input type="text" value={updatedName} onChange={({target}) =>
-                    setUpdatedName(target.value)}/>
-                </div>
-                <button id="update-button" onClick={handleChange}>change</button>
-            </form>
+            <UpdateForm warriors={warriors} setWarriors={setWarriors} upId={upId}/>
         </div>
     )
 }
