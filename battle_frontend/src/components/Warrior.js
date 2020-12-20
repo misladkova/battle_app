@@ -1,28 +1,19 @@
 import React from "react";
 import warriorsService from "../services/warriors";
 
-const Warrior = ({warrior, warriors, setWarriors, setOptions, setUpId}) => {
+const Warrior = ({warrior, warriors, setWarriors, setUpId}) => {
 
     const handleUpdate = async (id) => {
         setUpId(id)
     }
 
     const handleDelete = async (id) => {
-        console.log("dddddd", id)
         const newWarriorPromise = warriorsService.deleteWarriorServer(id)
-        const response = await newWarriorPromise
-        console.log(response)
+        await newWarriorPromise
         const newWarriors = warriors.filter(x => x.id !== id)
         setWarriors(newWarriors)
-        const opt = newWarriors.map(x => ({
-            "value": x.id,
-            "label": x.name
-        }))
-        setOptions(opt)
     }
-    console.log("warriorsssss:", warriors)
 
-    console.log("n", warrior)
     return (
         <li>bojovnik: {warrior.id} {warrior.name}, strength: {warrior.strength}, speed: {warrior.speed},
             toughness: {warrior.toughness}

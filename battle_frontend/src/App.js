@@ -9,18 +9,17 @@ import Fight from "./components/Fight";
 const App = () => {
 
     const [warriors, setWarriors] = useState([])
-    const [options, setOptions] = useState([])
     const [duels, setDuels] = useState([])
     const [upId, setUpId] = useState("")
+
+    const options = warriors.map(x => ({
+        "value": x.id,
+        "label": x.name
+    }))
 
     async function fetchData() {
         const wars = await warriorsService.getWarriorsServer()
         setWarriors(wars.data)
-        const opt = wars.data.map(x => ({
-            "value": x.id,
-            "label": x.name
-        }))
-        setOptions(opt)
     }
 
     async function fetchDuels(){
@@ -38,8 +37,8 @@ const App = () => {
             <h2>Battle</h2>
             <h4>List of warriors:</h4>
             {warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} warriors={warriors} setWarriors={setWarriors}
-            setOptions={setOptions} setUpId={setUpId}/>)}
-            <CreateForm setWarriors={setWarriors} warriors={warriors} setOptions={setOptions}/>
+                                              setUpId={setUpId}/>)}
+            <CreateForm setWarriors={setWarriors} warriors={warriors}/>
             <Fight options={options} setDuels={setDuels}/>
             <h4>History of battles:</h4>
             {duels.map(duel=> <Duel duel={duel}/>)}

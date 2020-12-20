@@ -20,13 +20,8 @@ const Fight = ({options, setDuels}) => {
     const handleFight = async (id1, id2) => {
         const newWarriorPromise = warriorsService.getBattleServer(id1, id2)
         const response = await newWarriorPromise
-        console.log("fjhfv", newWarriorPromise)
-        console.log("dds", response.data)
         setDuels(response.data)
     }
-
-    console.log("firs", firstSelect)
-    console.log("seco", secondSelect)
 
     return(
         <div>

@@ -1,27 +1,19 @@
 import warriorsService from "../services/warriors";
 import React, {useState} from "react";
 
-const CreateForm = ({warriors, setWarriors, setOptions}) => {
+const CreateForm = ({warriors, setWarriors}) => {
 
     const [newName, setNewName] = useState("")
 
     const handleCreate = async (event) => {
         event.preventDefault()
-        console.log("aaa")
 
         const warriorObj = {name: newName}
         const newWarriorPromise = warriorsService.addWarriorServer(warriorObj)
         setNewName("")
         const response = await newWarriorPromise
-        console.log("r", response)
         const newWarriors = warriors.concat(response.data)
-        console.log("l", newWarriors)
         setWarriors(newWarriors)
-        const opt = newWarriors.map(x => ({
-            "value": x.id,
-            "label": x.name
-        }))
-        setOptions(opt)
     }
 
     return(
