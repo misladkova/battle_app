@@ -1,14 +1,17 @@
 package com.company;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "duels")
 public class Duel {
 
     private String rivalName1;
     private String rivalName2;
     private String winner;
 
-    public Duel(String id1, String id2){
-        rivalName1 = id1;
-        rivalName2 = id2;
+    public Duel(String rivalName1, String rivalName2){
+        this.rivalName1 = rivalName1;
+        this.rivalName2 = rivalName2;
         calculate();
     }
 
