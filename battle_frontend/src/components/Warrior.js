@@ -1,10 +1,11 @@
 import React from "react";
 import warriorsService from "../services/warriors";
 
-const Warrior = ({warrior, warriors, setWarriors, setUpId}) => {
+const Warrior = ({warrior, warriors, setWarriors, setUpId, setUpdateVisible}) => {
 
     const handleUpdate = async (id) => {
         setUpId(id)
+        setUpdateVisible(true)
     }
 
     const handleDelete = async (id) => {
@@ -15,7 +16,7 @@ const Warrior = ({warrior, warriors, setWarriors, setUpId}) => {
     }
 
     return (
-        <li>bojovnik: {warrior.id} {warrior.name}, strength: {warrior.strength}, speed: {warrior.speed},
+        <li>Warrior: {warrior.id} {warrior.name}, strength: {warrior.strength}, speed: {warrior.speed},
             toughness: {warrior.toughness}
             <button onClick={() => handleUpdate(warrior.id)}>update</button>
             <button onClick={() => handleDelete(warrior.id)}>delete</button>

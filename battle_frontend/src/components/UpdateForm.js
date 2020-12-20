@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import warriorsService from "../services/warriors";
 
-const UpdateForm = ({warriors, setWarriors, upId}) => {
+const UpdateForm = ({warriors, setWarriors, upId, setUpdateVisible}) => {
 
     const [updatedName, setUpdatedName] = useState("")
 
@@ -24,7 +24,7 @@ const UpdateForm = ({warriors, setWarriors, upId}) => {
                     New name: <input type="text" value={updatedName} onChange={({target}) =>
                     setUpdatedName(target.value)}/>
                 </div>
-                <button id="update-button">change</button>
+                <button id="update-button">change</button> <button onClick={() => setUpdateVisible(false)}>cancel</button>
             </form>
         </div>
     )

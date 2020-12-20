@@ -1,7 +1,7 @@
 import warriorsService from "../services/warriors";
 import React, {useState} from "react";
 
-const CreateForm = ({warriors, setWarriors}) => {
+const CreateForm = ({warriors, setWarriors, setCreateVisible}) => {
 
     const [newName, setNewName] = useState("")
 
@@ -24,7 +24,7 @@ const CreateForm = ({warriors, setWarriors}) => {
                     Name: <input id="title" type="text" value={newName} onChange={({target}) =>
                     setNewName(target.value)}/>
                 </div>
-                <button id="create-button" type="submit">add</button>
+                <button id="create-button" type="submit">add</button> <button onClick={() => setCreateVisible(false)}>cancel</button>
             </form>
         </div>
     )

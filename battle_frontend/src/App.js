@@ -11,6 +11,9 @@ const App = () => {
     const [warriors, setWarriors] = useState([])
     const [duels, setDuels] = useState([])
     const [upId, setUpId] = useState("")
+    const [createVisible, setCreateVisible] = useState(false)
+    const [updateVisible, setUpdateVisible] = useState(false)
+    const [fightVisible, setFightVisible] = useState(false)
 
     const options = warriors.map(x => ({
         "value": x.id,
@@ -22,7 +25,7 @@ const App = () => {
         setWarriors(wars.data)
     }
 
-    async function fetchDuels(){
+    async function fetchDuels() {
         const battles = await warriorsService.getAllDuelsServer()
         setDuels(battles.data)
     }
@@ -36,13 +39,15 @@ const App = () => {
         <div>
             <h2>Battle</h2>
             <h4>List of warriors:</h4>
-            {warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} warriors={warriors} setWarriors={setWarriors}
-                                              setUpId={setUpId}/>)}
-            <CreateForm setWarriors={setWarriors} warriors={warriors}/>
-            <Fight options={options} setDuels={setDuels}/>
+            {warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} warriors={warriors}
+            setWarriors={setWarriors} setUpdateVisible={setUpdateVisible} setUpId={setUpId}/>)}
+            <button onClick={() => setCreateVisible(true)}>add new warrior</button>
+            {createVisible ? <CreateForm setWarriors={setWarriors} warriors={warriors} setCreateVisible={setCreateVisible}/> : ''}
+            {updateVisible ? <UpdateForm warriors={warriors} setWarriors={setWarriors} upId={upId} setUpdateVisible={setUpdateVisible}/> : ''}
+            <button onClick={() => setFightVisible(true)}>play a battle</button>
+            {fightVisible ? <Fight options={options} setDuels={setDuels} setFightVisible={setFightVisible}/> : ''}
             <h4>History of battles:</h4>
-            {duels.map(duel=> <Duel duel={duel}/>)}
-            <UpdateForm warriors={warriors} setWarriors={setWarriors} upId={upId}/>
+            {duels.map(duel => <Duel duel={duel}/>)}
         </div>
     )
 }
