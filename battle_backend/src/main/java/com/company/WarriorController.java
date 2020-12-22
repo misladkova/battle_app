@@ -59,11 +59,11 @@ public class WarriorController {
     public ResponseEntity<Collection<Duel>> getBattle(@PathVariable("name1") String rivalName1, @PathVariable("name2") String rivalName2) {
         Criteria criteria1 = Criteria.where("name").is(rivalName1);
         Query query1 = Query.query(criteria1);
-        Warrior warrior1 = mongoTemplate.findOne(query1, Warrior.class);
+        Warrior rival1 = mongoTemplate.findOne(query1, Warrior.class);
         Criteria criteria2 = Criteria.where("name").is(rivalName2);
         Query query2 = Query.query(criteria2);
-        Warrior warrior2 = mongoTemplate.findOne(query2, Warrior.class);
-        Duel duel = new Duel(rivalName1, rivalName2);
+        Warrior rival2 = mongoTemplate.findOne(query2, Warrior.class);
+        Duel duel = new Duel(rival1, rival2);
         mongoTemplate.insert(duel);
         Collection<Duel> duels = mongoTemplate.findAll(Duel.class);
         return new ResponseEntity<>(duels, HttpStatus.OK);
