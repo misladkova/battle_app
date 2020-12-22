@@ -41,7 +41,7 @@ public class WarriorController {
 
     @RequestMapping(value = "/warriors/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Warrior> updateWarrior(@PathVariable("id") String id, @RequestBody Warrior warrior) {
-        Query query2 = new Query(new Criteria("id").is("1"));
+        Query query2 = new Query(new Criteria("id").is(id));
         Update update = new Update().set("name", warrior.getName());
         UpdateResult result = mongoTemplate.updateFirst(query2, update, Warrior.class);
         return new ResponseEntity<>(warrior, HttpStatus.OK);
