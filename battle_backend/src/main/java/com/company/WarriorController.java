@@ -39,12 +39,16 @@ public class WarriorController {
         return new ResponseEntity<>(warrior, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/warriors/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/warriors/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<Warrior> updateWarrior(@PathVariable("id") String id, @RequestBody Warrior warrior) {
         Query query2 = new Query(new Criteria("id").is(id));
         Update update = new Update().set("name", warrior.getName());
-        UpdateResult result = mongoTemplate.updateFirst(query2, update, Warrior.class);
-        return new ResponseEntity<>(warrior, HttpStatus.OK);
+        if(warrior.getFile() != null) {
+            update.set("file", warrior.getFile());
+        }
+        mongoTemplate.updateFirst(query2, update, Warrior.class);
+        Warrior warrior1 = mongoTemplate.findOne(query2, Warrior.class);
+        return new ResponseEntity<>(warrior1, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/warriors/{id}", method = RequestMethod.DELETE)
