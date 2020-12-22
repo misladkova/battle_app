@@ -2,7 +2,7 @@ import React from "react";
 
 const Duel = ({duel}) => {
     return(
-        <li>{duel.rivalName1} vs {duel.rivalName2}, winner: {duel.winner}</li>
+        <li>{duel.rival1.name} vs {duel.rival2.name}, winner: {duel.winner}</li>
     )
 }
 
