@@ -9,9 +9,10 @@ public class Warrior{
     @Id
     private String id;
     private String name;
-    private int strength = new Random().nextInt(1000);
-    private int speed = new Random().nextInt(1000);
-    private int toughness = new Random().nextInt(1000);
+    private int strength = new Random().nextInt(100);
+    private int speed = new Random().nextInt(100);
+    private int toughness = new Random().nextInt(100);
+    private String file;
 
     public String getId(){
         return id;
@@ -51,6 +52,14 @@ public class Warrior{
 
     public int getStrength() {
         return strength;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
     }
 }
 
