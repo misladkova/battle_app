@@ -9,9 +9,9 @@ public class Warrior{
     @Id
     private String id;
     private String name;
-    private int strength = new Random().nextInt(100);
-    private int speed = new Random().nextInt(100);
-    private int toughness = new Random().nextInt(100);
+    private int strength = new Random().nextInt(200);
+    private int speed = new Random().nextInt(200);
+    private int toughness = new Random().nextInt(200);
     private String file;
 
     public String getId(){
