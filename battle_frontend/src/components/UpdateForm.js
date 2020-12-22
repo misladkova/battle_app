@@ -19,7 +19,6 @@ const UpdateForm = ({warriors, setWarriors, upId, setUpdateVisible}) => {
         } else {
             updatedWarriorFields.name = updatedName;
         }
-        console.log("ozajstny vypis", updatedWarriorFields)
         const newWarriorPromise = warriorsService.updateWarriorServer(upId, updatedWarriorFields)
         const response = await newWarriorPromise
         const newWarriors = warriors.map(w=> w.id !== upId ? w: response.data)
@@ -42,7 +41,6 @@ const UpdateForm = ({warriors, setWarriors, upId, setUpdateVisible}) => {
     const handleReaderLoaded = (readerEvent) => {
         let binaryString = readerEvent.target.result
         const x = btoa(binaryString)
-        console.log("loaded", x)
         setUpdatedFile(x)
     }
 
