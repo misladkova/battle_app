@@ -10,13 +10,23 @@ const UpdateForm = ({warriors, setWarriors, upId, setUpdateVisible}) => {
         event.preventDefault()
 
         const x = warriors.find(a=>a.id===upId)
-        const updatedWarrior = {...x, name: updatedName, file: updatedFile}
-        const newWarriorPromise = warriorsService.updateWarriorServer(upId, updatedWarrior)
+        const updatedWarriorFields = {};
+        if(updatedFile!==""){
+            updatedWarriorFields.file = updatedFile;
+        }
+        if(updatedName===""){
+            updatedWarriorFields.name = x.name;
+        } else {
+            updatedWarriorFields.name = updatedName;
+        }
+        console.log("ozajstny vypis", updatedWarriorFields)
+        const newWarriorPromise = warriorsService.updateWarriorServer(upId, updatedWarriorFields)
         const response = await newWarriorPromise
-        const newWarriors = warriors.map(w=> (w.name!==x.name||w.file!==x.file) ? w: response.data)
+        const newWarriors = warriors.map(w=> w.id !== upId ? w: response.data)
         setWarriors(newWarriors)
         setUpdatedName("")
         setUpdatedFile("")
+        setUpdateVisible(false);
     }
 
     const fileChange = (e) => {
