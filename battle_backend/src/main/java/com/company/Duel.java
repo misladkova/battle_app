@@ -32,8 +32,10 @@ public class Duel {
         double result2 = rival2.getStrength()*Math.random()+ rival2.getSpeed()*Math.random()+ rival2.getToughness()*Math.random();
         if(result1>result2) {
             winner = rival1.getName();
-        }else{
+        }if(result1<result2){
             winner = rival2.getName();
+        }else{
+            winner = "draw";
         }
     }
 }
