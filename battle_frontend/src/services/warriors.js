@@ -16,7 +16,7 @@ const addWarriorServer = (warrior) => {
 
 const updateWarriorServer = (id, updatedWarrior) => {
     const url = `${baseUrl}/${id}`
-    return axios.put(url, updatedWarrior)
+    return axios.patch(url, updatedWarrior)
 }
 
 const deleteWarriorServer = (id) => {
