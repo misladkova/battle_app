@@ -33,7 +33,7 @@ public class WarriorControllerTest extends AbstractTest {
     public void createWarrior() throws Exception {
         String uri = "/warriors";
         Warrior warrior = new Warrior();
-        warrior.setId("2");
+        warrior.setId("1");
         warrior.setName("First");
         warrior.setFile("asdfgh");
         String inputJson = super.mapToJson(warrior);
@@ -49,7 +49,7 @@ public class WarriorControllerTest extends AbstractTest {
 
     @Test
     public void updateWarrior() throws Exception {
-        String uri = "/warriors/2";
+        String uri = "/warriors/9";
         MvcResult mvcResult1 = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
         String w = mvcResult1.getResponse().getContentAsString();
@@ -67,7 +67,7 @@ public class WarriorControllerTest extends AbstractTest {
 
     @Test
     public void deleteWarrior() throws Exception {
-        String uri = "/warriors/2";
+        String uri = "/warriors/9";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete(uri)).andReturn();
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
