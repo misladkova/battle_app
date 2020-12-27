@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  backend:
+    image:
+      myimage
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+  frontend:
+    image:
+      sample:prod
+    ports:
+      - "3000:80"
