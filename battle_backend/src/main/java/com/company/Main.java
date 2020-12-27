@@ -72,6 +72,7 @@ public class Main implements CommandLineRunner{
                 registry.addMapping("/warriors").allowedOrigins("http://localhost:3000");
                 registry.addMapping("/warriors/{id}").allowedOrigins("http://localhost:3000");
                 registry.addMapping("/warriors/{id1}/{id2}").allowedOrigins("http://localhost:3000");
+                registry.addMapping("/warriors/duels").allowedOrigins("http://localhost:3000");
             }
         };
     }
