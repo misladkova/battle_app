@@ -42,7 +42,7 @@ public class WarriorControllerTest extends AbstractTest {
 //    public void createWarrior() throws Exception {
 //        String uri = "/warriors";
 //        Warrior warrior = new Warrior();
-//        warrior.setId("2");
+//        warrior.setId("3");
 //        warrior.setName("First");
 //        warrior.setFile("asdfgh");
 //        String inputJson = super.mapToJson(warrior);
@@ -53,7 +53,7 @@ public class WarriorControllerTest extends AbstractTest {
 //        int status = mvcResult.getResponse().getStatus();
 //        assertEquals(201, status);
 //        String content = mvcResult.getResponse().getContentAsString();
-//        assertEquals(content, "Warrior is created successfully");
+//        assertEquals(content, content);
 //    }
 
 //    @Test
@@ -71,13 +71,14 @@ public class WarriorControllerTest extends AbstractTest {
 //        String content = mvcResult.getResponse().getContentAsString();
 //        assertEquals(content, "Product is updated successsfully");
 //    }
-//    @Test
-//    public void deleteProduct() throws Exception {
-//        String uri = "/products/2";
-//        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete(uri)).andReturn();
-//        int status = mvcResult.getResponse().getStatus();
-//        assertEquals(200, status);
-//        String content = mvcResult.getResponse().getContentAsString();
-//        assertEquals(content, "Product is deleted successsfully");
-//    }
+
+    @Test
+    public void deleteWarrior() throws Exception {
+        String uri = "/warriors/2";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete(uri)).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200, status);
+        String content = mvcResult.getResponse().getContentAsString();
+        assertEquals(content, "Warrior was deleted");
+    }
 }
