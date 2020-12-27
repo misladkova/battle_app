@@ -38,39 +38,41 @@ public class WarriorControllerTest extends AbstractTest {
         assertTrue(warriorsList.length > 0);
     }
 
-//    @Test
-//    public void createWarrior() throws Exception {
-//        String uri = "/warriors";
-//        Warrior warrior = new Warrior();
-//        warrior.setId("3");
-//        warrior.setName("First");
-//        warrior.setFile("asdfgh");
-//        String inputJson = super.mapToJson(warrior);
-//        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
-//                .contentType(MediaType.APPLICATION_JSON_VALUE)
-//                .content(inputJson)).andReturn();
-//
-//        int status = mvcResult.getResponse().getStatus();
-//        assertEquals(201, status);
-//        String content = mvcResult.getResponse().getContentAsString();
-//        assertEquals(content, content);
-//    }
+    @Test
+    public void createWarrior() throws Exception {
+        String uri = "/warriors";
+        Warrior warrior = new Warrior();
+        warrior.setId("2");
+        warrior.setName("First");
+        warrior.setFile("asdfgh");
+        String inputJson = super.mapToJson(warrior);
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(inputJson)).andReturn();
 
-//    @Test
-//    public void updateProduct() throws Exception {
-//        String uri = "/products/2";
-//        Product product = new Product();
-//        product.setName("Lemon");
-//        String inputJson = super.mapToJson(product);
-//        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
-//                .contentType(MediaType.APPLICATION_JSON_VALUE)
-//                .content(inputJson)).andReturn();
-//
-//        int status = mvcResult.getResponse().getStatus();
-//        assertEquals(200, status);
-//        String content = mvcResult.getResponse().getContentAsString();
-//        assertEquals(content, "Product is updated successsfully");
-//    }
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(201, status);
+        String content = mvcResult.getResponse().getContentAsString();
+        assertEquals(content, inputJson);
+    }
+
+    @Test
+    public void updateWarrior() throws Exception {
+        String uri = "/warriors/2";
+        MvcResult mvcResult1 = mvc.perform(MockMvcRequestBuilders.get(uri)
+                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+        String w = mvcResult1.getResponse().getContentAsString();
+        Warrior inputJson = mapFromJson(w, Warrior.class);
+        inputJson.setName("Qwert");
+        String inputJson1 = super.mapToJson(inputJson);
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.patch(uri)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(inputJson1)).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200, status);
+        String content = mvcResult.getResponse().getContentAsString();
+        assertEquals(content, inputJson1);
+    }
 
     @Test
     public void deleteWarrior() throws Exception {
