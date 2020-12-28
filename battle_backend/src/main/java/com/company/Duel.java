@@ -9,6 +9,8 @@ public class Duel {
     private Warrior rival2;
     private String winner;
 
+    public Duel(){ }
+
     public Duel(Warrior rival1, Warrior rival2){
         this.rival1 = rival1;
         this.rival2 = rival2;

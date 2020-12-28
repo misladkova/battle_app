@@ -1,12 +1,14 @@
 
+import com.company.Duel;
 import com.company.Warrior;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
+
+import static org.junit.Assert.*;
 
 
 public class WarriorControllerTest extends AbstractTest {
@@ -49,8 +51,8 @@ public class WarriorControllerTest extends AbstractTest {
     public void createWarrior() throws Exception {
         String uri = "/warriors";
         Warrior warrior = new Warrior();
-        warrior.setId("1");
-        warrior.setName("First");
+        warrior.setId("2");
+        warrior.setName("Second");
         warrior.setFile("asdfgh");
         String inputJson = super.mapToJson(warrior);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
@@ -91,5 +93,35 @@ public class WarriorControllerTest extends AbstractTest {
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
         assertEquals(content, "Warrior was deleted");
+    }
+
+    @Test
+    public void getBattle() throws Exception{
+        String uri = "/warriors/First/Second";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
+                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+        String content = mvcResult.getResponse().getContentAsString();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200, status);
+//        String content = mvcResult.getResponse().getContentAsString();
+//        Duel[] duelsList = super.mapFromJson(content, List<Duel>);
+        Duel[] duelsList = super.mapFromJson(content, Duel[].class);
+        assertTrue(duelsList.length == 1);
+        assertEquals("1", duelsList[0].getWinner());
+    }
+
+    @Test
+    public void getDuelsList() throws Exception{
+        String uri = "/warriors/duels";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
+                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200, status);
+        String content = mvcResult.getResponse().getContentAsString();
+        Duel[] duelsList = super.mapFromJson(content, Duel[].class);
+        assertTrue(duelsList.length > 0);
     }
 }
