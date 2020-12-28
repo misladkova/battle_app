@@ -9,9 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-
-import java.util.Collection;
-
 import static org.junit.Assert.*;
 
 
@@ -38,7 +35,6 @@ public class WarriorControllerTest extends AbstractTest {
         Duel d = new Duel(w1, w2);
         mongoTemplate.insert(d);
     }
-
 
     @Test
     public void getWarriorsList() throws Exception {
