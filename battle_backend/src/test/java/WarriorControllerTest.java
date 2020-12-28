@@ -3,20 +3,40 @@ import com.company.Duel;
 import com.company.Warrior;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 
+import java.util.Collection;
+
 import static org.junit.Assert.*;
 
 
 public class WarriorControllerTest extends AbstractTest {
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     @Override
     @Before
-    public void setUp() {
+    public void setUp(){
         super.setUp();
+        mongoTemplate.dropCollection(Warrior.class);
+        Warrior w1 = new Warrior();
+        w1.setId("1");
+        w1.setName("First");
+        w1.setFile("asd");
+        mongoTemplate.insert(w1);
+        Warrior w2 = new Warrior();
+        w2.setId("2");
+        w2.setName("Second");
+        w2.setFile("asd");
+        mongoTemplate.insert(w2);
+        mongoTemplate.dropCollection(Duel.class);
+        Duel d = new Duel(w1, w2);
+        mongoTemplate.insert(d);
     }
 
 
@@ -51,8 +71,8 @@ public class WarriorControllerTest extends AbstractTest {
     public void createWarrior() throws Exception {
         String uri = "/warriors";
         Warrior warrior = new Warrior();
-        warrior.setId("2");
-        warrior.setName("Second");
+        warrior.setId("3");
+        warrior.setName("Third");
         warrior.setFile("asdfgh");
         String inputJson = super.mapToJson(warrior);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
@@ -67,7 +87,7 @@ public class WarriorControllerTest extends AbstractTest {
 
     @Test
     public void updateWarrior() throws Exception {
-        String uri = "/warriors/9";
+        String uri = "/warriors/1";
         MvcResult mvcResult1 = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 
@@ -87,7 +107,7 @@ public class WarriorControllerTest extends AbstractTest {
 
     @Test
     public void deleteWarrior() throws Exception {
-        String uri = "/warriors/9";
+        String uri = "/warriors/1";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete(uri)).andReturn();
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
@@ -105,11 +125,8 @@ public class WarriorControllerTest extends AbstractTest {
 
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
-//        String content = mvcResult.getResponse().getContentAsString();
-//        Duel[] duelsList = super.mapFromJson(content, List<Duel>);
         Duel[] duelsList = super.mapFromJson(content, Duel[].class);
-        assertTrue(duelsList.length == 1);
-        assertEquals("1", duelsList[0].getWinner());
+        assertEquals(2, duelsList.length);
     }
 
     @Test
@@ -122,6 +139,6 @@ public class WarriorControllerTest extends AbstractTest {
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
         Duel[] duelsList = super.mapFromJson(content, Duel[].class);
-        assertTrue(duelsList.length > 0);
+        assertEquals(1, duelsList.length);
     }
 }
