@@ -16,6 +16,8 @@ public class WarriorControllerTest extends AbstractTest {
     public void setUp() {
         super.setUp();
     }
+
+
     @Test
     public void getWarriorsList() throws Exception {
         String uri = "/warriors";
@@ -27,6 +29,20 @@ public class WarriorControllerTest extends AbstractTest {
         String content = mvcResult.getResponse().getContentAsString();
         Warrior[] warriorsList = super.mapFromJson(content, Warrior[].class);
         assertTrue(warriorsList.length > 0);
+    }
+
+    @Test
+    public void getWarrior() throws Exception{
+        String uri = "/warriors/1";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
+                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200, status);
+        String content = mvcResult.getResponse().getContentAsString();
+        Warrior w = super.mapFromJson(content, Warrior.class);
+        String w1 = super.mapToJson(w);
+        assertEquals(content, w1);
     }
 
     @Test
@@ -52,6 +68,7 @@ public class WarriorControllerTest extends AbstractTest {
         String uri = "/warriors/9";
         MvcResult mvcResult1 = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
         String w = mvcResult1.getResponse().getContentAsString();
         Warrior inputJson = mapFromJson(w, Warrior.class);
         inputJson.setName("Qwert");
@@ -59,6 +76,7 @@ public class WarriorControllerTest extends AbstractTest {
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.patch(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(inputJson1)).andReturn();
+
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
