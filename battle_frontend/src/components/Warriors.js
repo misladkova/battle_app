@@ -2,7 +2,6 @@ import Warrior from "./Warrior";
 import React from "react";
 
 const Warriors = ({warriors, setWarriors, setUpdateVisible, setUpId}) => {
-    console.log("aaaaa", warriors)
     // https://stackoverflow.com/questions/62880615/how-do-i-map-for-every-two-elements-for-react
     const rows = warriors.reduce(function (rows, key, index) {
         return (index % 3 === 0 ? rows.push([key])
