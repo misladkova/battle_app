@@ -49,7 +49,7 @@ const App = () => {
                 play a battle</button>
             {fightVisible ? <Fight options={options} setDuels={setDuels} setFightVisible={setFightVisible}/> : ''}
             <h4>History of battles:</h4>
-            {duels.map(duel => <Duel duel={duel}/>)}
+            {duels.map(duel => <Duel key={duel.id} duel={duel}/>)}
         </div>
     )
 }
