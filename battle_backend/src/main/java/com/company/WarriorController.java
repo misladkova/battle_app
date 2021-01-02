@@ -1,7 +1,5 @@
 package com.company;
 
-import com.mongodb.client.result.DeleteResult;
-import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -55,16 +53,16 @@ public class WarriorController {
     public ResponseEntity<String> delete(@PathVariable("id") String id) {
         Criteria criteria1 = Criteria.where("id").is(id);
         Query query1 = Query.query(criteria1);
-        DeleteResult deleteResult= mongoTemplate.remove(query1, Warrior.class);
+        mongoTemplate.remove(query1, Warrior.class);
         return new ResponseEntity<>("Warrior was deleted", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/warriors/{name1}/{name2}")
-    public ResponseEntity<Collection<Duel>> getBattle(@PathVariable("name1") String rivalName1, @PathVariable("name2") String rivalName2) {
-        Criteria criteria1 = Criteria.where("name").is(rivalName1);
+    @RequestMapping(value = "/warriors/{id1}/{id2}")
+    public ResponseEntity<Collection<Duel>> getBattle(@PathVariable("id1") String id1, @PathVariable("id2") String id2) {
+        Criteria criteria1 = Criteria.where("id").is(id1);
         Query query1 = Query.query(criteria1);
         Warrior rival1 = mongoTemplate.findOne(query1, Warrior.class);
-        Criteria criteria2 = Criteria.where("name").is(rivalName2);
+        Criteria criteria2 = Criteria.where("id").is(id2);
         Query query2 = Query.query(criteria2);
         Warrior rival2 = mongoTemplate.findOne(query2, Warrior.class);
         Duel duel = new Duel(rival1, rival2);
