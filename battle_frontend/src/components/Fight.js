@@ -23,13 +23,14 @@ const Fight = ({options, setDuels, setFightVisible}) => {
         setDuels(response.data)
     }
 
-    return(
+    return (
         <div>
             <h4>Choose first player:</h4>
             <Select options={options} onChange={handleFirstSelect}/>
             <h4>Choose second player:</h4>
             <Select options={options} onChange={handleSecondSelect}/>
-            <button onClick={() => handleFight(firstSelect, secondSelect)}>fight</button> <button onClick={() => setFightVisible(false)}>cancel</button>
+            <button onClick={() => handleFight(firstSelect, secondSelect)}>fight</button>
+            <button onClick={() => setFightVisible(false)}>cancel</button>
         </div>
     )
 }
