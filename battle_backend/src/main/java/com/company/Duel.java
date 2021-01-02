@@ -8,6 +8,7 @@ public class Duel {
     private Warrior rival1;
     private Warrior rival2;
     private String winner;
+    private String id;
 
     public Duel(){ }
 
@@ -27,6 +28,10 @@ public class Duel {
 
     public String getWinner() {
         return winner;
+    }
+
+    public String getId() {
+        return id;
     }
 
     private void calculate(){
