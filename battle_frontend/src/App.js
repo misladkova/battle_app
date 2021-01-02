@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import warriorsService from "./services/warriors";
-import Warrior from "./components/Warrior";
 import CreateForm from "./components/CreateForm";
 import Duel from "./components/Duel";
 import UpdateForm from "./components/UpdateForm";
@@ -41,14 +40,12 @@ const App = () => {
             <h2>Battle</h2>
             <h4>List of warriors:</h4>
             <Warriors warriors={warriors} setWarriors={setWarriors} setUpId={setUpId} setUpdateVisible={setUpdateVisible}/>
-            {/*{warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} warriors={warriors}*/}
-            {/*setWarriors={setWarriors} setUpdateVisible={setUpdateVisible} setUpId={setUpId}/>)}*/}
-            <button class="btn btn-outline-primary btn-lg mt-2 mb-4 ml-2 mr-2" onClick={() => setCreateVisible(true)}
+            <button className="btn btn-outline-primary btn-lg mt-2 mb-4 ml-2 mr-2" onClick={() => setCreateVisible(true)}
             >add new warrior</button>
             {createVisible ? <CreateForm setWarriors={setWarriors} warriors={warriors} setCreateVisible={setCreateVisible}/> : ''}
             {updateVisible ? <UpdateForm warriors={warriors} setWarriors={setWarriors} upId={upId} setUpdateVisible=
                 {setUpdateVisible}/> : ''}
-            <button class="btn btn-outline-primary btn-lg mt-2 mb-4" onClick={() => setFightVisible(true)}>
+            <button className="btn btn-outline-primary btn-lg mt-2 mb-4" onClick={() => setFightVisible(true)}>
                 play a battle</button>
             {fightVisible ? <Fight options={options} setDuels={setDuels} setFightVisible={setFightVisible}/> : ''}
             <h4>History of battles:</h4>
