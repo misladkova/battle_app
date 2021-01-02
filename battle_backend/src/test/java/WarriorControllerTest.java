@@ -67,7 +67,7 @@ public class WarriorControllerTest extends AbstractTest {
     public void createWarrior() throws Exception {
         String uri = "/warriors";
         Warrior warrior = new Warrior();
-        warrior.setId("3");
+        warrior.setId("20");
         warrior.setName("Third");
         warrior.setFile("asdfgh");
         String inputJson = super.mapToJson(warrior);
@@ -113,7 +113,7 @@ public class WarriorControllerTest extends AbstractTest {
 
     @Test
     public void getBattle() throws Exception{
-        String uri = "/warriors/First/Second";
+        String uri = "/warriors/1/2";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 
