@@ -37,12 +37,14 @@ const Warrior = ({warrior, warriors, setWarriors, setUpId, setUpdateVisible}) =>
         //     </div>
         <div className="col-md-4">
             <div className="card">
-                <img className="card-img-top" src={`data:image/jpeg;base64,${warrior.file}`} alt="Warrior_image" width="150" height="100"/>
+                <img className="card-img-top" src={`data:image/jpeg;base64,${warrior.file}`} alt="Warrior_image"
+                     width="150" height="100"/>
                     <div className="card-body">
                         <h5 className="card-title">Warrior: {warrior.name}</h5>
                         <p className="card-text">strength: {warrior.strength}, speed: {warrior.speed},
                                                         toughness: {warrior.toughness}</p>
-                        <button class="btn btn-outline-primary btn-sm" onClick={() => handleUpdate(warrior.id)}>update</button>
+                        <button class="btn btn-outline-primary btn-sm mt-2 mb-2 ml-2 mr-2" onClick={() =>
+                            handleUpdate(warrior.id)}>update</button>
                         <button class="btn btn-outline-primary btn-sm" onClick={() => handleDelete(warrior.id)}>delete</button>
                         <p className="card-text"><small className="text-muted">Id: {warrior.id}</small></p>
                     </div>
