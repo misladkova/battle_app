@@ -5,6 +5,7 @@ import CreateForm from "./components/CreateForm";
 import Duel from "./components/Duel";
 import UpdateForm from "./components/UpdateForm";
 import Fight from "./components/Fight";
+import Warriors from "./components/Warriors";
 
 const App = () => {
 
@@ -36,11 +37,12 @@ const App = () => {
     }, [])
 
     return (
-        <div>
+        <div className="container">
             <h2>Battle</h2>
             <h4>List of warriors:</h4>
-            {warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} warriors={warriors}
-            setWarriors={setWarriors} setUpdateVisible={setUpdateVisible} setUpId={setUpId}/>)}
+            <Warriors warriors={warriors} setWarriors={setWarriors} setUpId={setUpId} setUpdateVisible={setUpdateVisible}/>
+            {/*{warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} warriors={warriors}*/}
+            {/*setWarriors={setWarriors} setUpdateVisible={setUpdateVisible} setUpId={setUpId}/>)}*/}
             <button onClick={() => setCreateVisible(true)}>add new warrior</button>
             {createVisible ? <CreateForm setWarriors={setWarriors} warriors={warriors} setCreateVisible={setCreateVisible}/> : ''}
             {updateVisible ? <UpdateForm warriors={warriors} setWarriors={setWarriors} upId={upId} setUpdateVisible={setUpdateVisible}/> : ''}
