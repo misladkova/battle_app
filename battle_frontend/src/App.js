@@ -43,10 +43,13 @@ const App = () => {
             <Warriors warriors={warriors} setWarriors={setWarriors} setUpId={setUpId} setUpdateVisible={setUpdateVisible}/>
             {/*{warriors.map(warrior => <Warrior key={warrior.id} warrior={warrior} warriors={warriors}*/}
             {/*setWarriors={setWarriors} setUpdateVisible={setUpdateVisible} setUpId={setUpId}/>)}*/}
-            <button class="btn btn-outline-primary btn-lg" onClick={() => setCreateVisible(true)}>add new warrior</button>
+            <button class="btn btn-outline-primary btn-lg mt-2 mb-4 ml-2 mr-2" onClick={() => setCreateVisible(true)}
+            >add new warrior</button>
             {createVisible ? <CreateForm setWarriors={setWarriors} warriors={warriors} setCreateVisible={setCreateVisible}/> : ''}
-            {updateVisible ? <UpdateForm warriors={warriors} setWarriors={setWarriors} upId={upId} setUpdateVisible={setUpdateVisible}/> : ''}
-            <button class="btn btn-outline-primary btn-lg" onClick={() => setFightVisible(true)}>play a battle</button>
+            {updateVisible ? <UpdateForm warriors={warriors} setWarriors={setWarriors} upId={upId} setUpdateVisible=
+                {setUpdateVisible}/> : ''}
+            <button class="btn btn-outline-primary btn-lg mt-2 mb-4" onClick={() => setFightVisible(true)}>
+                play a battle</button>
             {fightVisible ? <Fight options={options} setDuels={setDuels} setFightVisible={setFightVisible}/> : ''}
             <h4>History of battles:</h4>
             {duels.map(duel => <Duel duel={duel}/>)}
