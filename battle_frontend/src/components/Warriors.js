@@ -7,10 +7,11 @@ const Warriors = ({warriors, setWarriors, setUpdateVisible, setUpId}) => {
         return (index % 3 === 0 ? rows.push([key])
             : rows[rows.length-1].push(key)) && rows;
     }, []);
+
     return (
         <div className="mt-4">
-            {rows.map(row => (
-                <div className="row mt-3 mb-3">
+            {rows.map((row, idx) => (
+                <div key={idx} className="row mt-3 mb-3">
                     {row.map(warrior => <Warrior key={warrior.id} warrior={warrior} warriors={warriors}
                                                      setWarriors={setWarriors} setUpdateVisible={setUpdateVisible}
                                                      setUpId={setUpId}/>)}
