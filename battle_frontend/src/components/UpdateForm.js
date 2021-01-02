@@ -53,7 +53,7 @@ const UpdateForm = ({warriors, setWarriors, upId, setUpdateVisible}) => {
                     setUpdatedName(target.value)}/>
                     New file: <input type="file" accept=".jpeg, .png, .jpg" onChange={fileChange}/>
                 </div>
-                <button id="update-button">change</button> <button onClick={() => setUpdateVisible(false)}>cancel</button>
+                <button class="btn btn-primary mr-1 mt-2 mb-2" id="update-button">change</button> <button class="btn btn-secondary mt-2 mb-2" onClick={() => setUpdateVisible(false)}>cancel</button>
             </form>
         </div>
     )

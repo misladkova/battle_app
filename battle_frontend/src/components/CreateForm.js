@@ -44,7 +44,7 @@ const CreateForm = ({warriors, setWarriors, setCreateVisible}) => {
                     setNewName(target.value)}/>
                     Picture: <input id="image" type="file" accept=".jpeg, .png, .jpg" onChange={fileOnChange}/>
                 </div>
-                <button id="create-button" type="submit">add</button> <button onClick={() => setCreateVisible(false)}>cancel</button>
+                <button class="btn btn-primary mr-1 mt-2 mb-2" id="create-button" type="submit">add</button> <button class="btn btn-secondary mt-2 mb-2" onClick={() => setCreateVisible(false)}>cancel</button>
             </form>
         </div>
     )
