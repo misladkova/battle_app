@@ -35,6 +35,14 @@ const App = () => {
         fetchDuels()
     }, [])
 
+    const showBattle = () =>{
+        if(warriors.length<2){
+            window.alert("At least 2 warriors needed")
+        }else {
+            setFightVisible(true)
+        }
+    }
+
     return (
         <div className="container">
             <h2>Battle</h2>
@@ -45,7 +53,7 @@ const App = () => {
             {createVisible ? <CreateForm setWarriors={setWarriors} warriors={warriors} setCreateVisible={setCreateVisible}/> : ''}
             {updateVisible ? <UpdateForm warriors={warriors} setWarriors={setWarriors} upId={upId} setUpdateVisible=
                 {setUpdateVisible}/> : ''}
-            <button className="btn btn-outline-primary btn-lg mt-2 mb-4" onClick={() => setFightVisible(true)}>
+            <button className="btn btn-outline-primary btn-lg mt-2 mb-4" onClick={showBattle}>
                 play a battle</button>
             {fightVisible ? <Fight options={options} setDuels={setDuels} setFightVisible={setFightVisible}/> : ''}
             <h4>History of battles:</h4>
