@@ -35,10 +35,10 @@ const App = () => {
         fetchDuels()
     }, [])
 
-    const showBattle = () =>{
-        if(warriors.length<2){
+    const showBattle = () => {
+        if (warriors.length < 2) {
             window.alert("At least 2 warriors needed")
-        }else {
+        } else {
             setFightVisible(true)
         }
     }
@@ -47,17 +47,26 @@ const App = () => {
         <div className="container">
             <h2>Battle</h2>
             <h4>List of warriors:</h4>
-            <Warriors warriors={warriors} setWarriors={setWarriors} setUpId={setUpId} setUpdateVisible={setUpdateVisible}/>
-            <button className="btn btn-outline-primary btn-lg mt-2 mb-4 ml-2 mr-2" onClick={() => setCreateVisible(true)}
-            >add new warrior</button>
-            {createVisible ? <CreateForm setWarriors={setWarriors} warriors={warriors} setCreateVisible={setCreateVisible}/> : ''}
+            <Warriors warriors={warriors} setWarriors={setWarriors} setUpId={setUpId}
+                      setUpdateVisible={setUpdateVisible}/>
+            <button className="btn btn-outline-primary btn-lg mt-2 mb-4 ml-2 mr-2"
+                    onClick={() => setCreateVisible(true)}
+            >add new warrior
+            </button>
+            {createVisible ?
+                <CreateForm setWarriors={setWarriors} warriors={warriors} setCreateVisible={setCreateVisible}/> : ''}
             {updateVisible ? <UpdateForm warriors={warriors} setWarriors={setWarriors} upId={upId} setUpdateVisible=
                 {setUpdateVisible}/> : ''}
             <button className="btn btn-outline-primary btn-lg mt-2 mb-4" onClick={showBattle}>
-                play a battle</button>
+                play a battle
+            </button>
             {fightVisible ? <Fight options={options} setDuels={setDuels} setFightVisible={setFightVisible}/> : ''}
             <h4>History of battles:</h4>
-            {duels.map(duel => <Duel key={duel.id} duel={duel}/>)}
+            <div className="col-md-6">
+                <ul className="list-group">
+                    {duels.map(duel => <Duel key={duel.id} duel={duel}/>)}
+                </ul>
+            </div>
         </div>
     )
 }
