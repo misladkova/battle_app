@@ -2,13 +2,13 @@ version: "3.8"
 services:
   backend:
     image:
-      myimage
+      battle_backend
     env_file:
       - .env
     ports:
       - "8080:8080"
   frontend:
     image:
-      sample:prod
+      battle_frontend
     ports:
       - "3000:80"
