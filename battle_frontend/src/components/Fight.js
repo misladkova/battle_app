@@ -32,7 +32,8 @@ const Fight = ({options, setDuels, setFightVisible}) => {
             <select className="form-control" value={secondSelect} onChange={handleSecondSelect}>
                 {options.map(o => <option value={o.value}>{o.label}</option>)}
             </select>
-            <button className="btn btn-primary mr-2 mt-2 mb-2" onClick={() => handleFight(firstSelect, secondSelect)}>fight</button>
+            <button id="fight" className="btn btn-primary mr-2 mt-2 mb-2" onClick={() =>
+                handleFight(firstSelect, secondSelect)}>fight</button>
             <button className="btn btn-secondary mt-2 mb-2" onClick={() => setFightVisible(false)}>cancel</button>
         </div>
     )
