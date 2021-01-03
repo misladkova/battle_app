@@ -26,7 +26,7 @@ const Warrior = ({warrior, warriors, setWarriors, setUpId, setUpdateVisible}) =>
                                                         toughness: {warrior.toughness}</p>
                         <button className="btn btn-outline-primary btn-sm mt-2 mb-2 ml-2 mr-2" onClick={() =>
                             handleUpdate(warrior.id)}>update</button>
-                        <button id="delete" className="btn btn-outline-primary btn-sm" onClick={() => handleDelete(warrior.id)}>delete</button>
+                        <button className="btn btn-outline-primary btn-sm delete" onClick={() => handleDelete(warrior.id)}>delete</button>
                         <p className="card-text"><small className="text-muted">Id: {warrior.id}</small></p>
                     </div>
             </div>
