@@ -12,8 +12,9 @@ describe('Battle app', function () {
     })
 
     afterEach(function () {
-        cy.get('#delete').last().click()
-        cy.get('#delete').last().click()
+        cy.get('.delete').last().click()
+        cy.wait(2000)
+        cy.get('.delete').last().click()
     })
 
     it('headers are shown', function () {
