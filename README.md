@@ -49,7 +49,7 @@ $ docker build -t battle_frontend .
 ```
 run docker image
 ```bat
-$ docker run -it --rm -p 1337:80 battle_frontend
+$ docker run -it --rm -p 3000:80 battle_frontend
 ```
 ### backend+frontend
 
