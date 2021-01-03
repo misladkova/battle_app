@@ -18,7 +18,11 @@ const Fight = ({options, setDuels, setFightVisible}) => {
 
     const handleFight = async (id1, id2) => {
         id1 = id1 ? id1 : options[0].value;
-        id2 = id2 ? id2 : options[1].value;
+        id2 = id2 ? id2 : options[0].value;
+        if(id1 === id2){
+            window.alert("Choose different warriors")
+            return;
+        }
         const newWarriorPromise = warriorsService.getBattleServer(id1, id2)
         const response = await newWarriorPromise
         setDuels(response.data)
