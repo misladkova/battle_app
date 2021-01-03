@@ -14,6 +14,10 @@ test('renders content', () => {
     )
 
     expect(component.container).toHaveTextContent(
-        '123 Blah'
+        'Blah'
+    )
+
+    expect(component.container).toHaveTextContent(
+        '123'
     )
 })
