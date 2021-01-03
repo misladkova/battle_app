@@ -48,10 +48,12 @@ const UpdateForm = ({warriors, setWarriors, upId, setUpdateVisible}) => {
         <div>
             <h4>Update the warrior:</h4>
             <form onSubmit={handleChange}>
-                <div>
-                    New name: <input type="text" value={updatedName} onChange={({target}) =>
+                <div className="form-group col-md-6">
+                    <label>New name:</label>
+                    <input className="form-control" type="text" value={updatedName} onChange={({target}) =>
                     setUpdatedName(target.value)}/>
-                    New file: <input type="file" accept=".jpeg, .png, .jpg" onChange={fileChange}/>
+                    <label>New file:</label>
+                    <input className="form-control-file" type="file" accept=".jpeg, .png, .jpg" onChange={fileChange}/>
                 </div>
                 <button className="btn btn-primary mr-1 mt-2 mb-2" id="update-button">change</button>
                 <button className="btn btn-secondary mt-2 mb-2" onClick={() => setUpdateVisible(false)}>cancel</button>
