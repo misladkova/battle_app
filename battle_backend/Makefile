@@ -8,4 +8,4 @@ test:
 	mvn test
 
 docker_build:
-	cp target/battle_backend-1.0-SNAPSHOT.jar docker && cd docker && docker build -t battle_backend .
+	docker build -t battle_backend .
