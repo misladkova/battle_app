@@ -1,6 +1,19 @@
 describe('Battle app', function () {
     beforeEach(function () {
         cy.visit('http://localhost:3000')
+        cy.contains('add new warrior').click()
+        cy.contains('Create new warrior:')
+        cy.get('#title')
+        cy.get('#image')
+        cy.get('#create-button').click()
+        cy.get('#title')
+        cy.get('#image')
+        cy.get('#create-button').click()
+    })
+
+    afterEach(function () {
+        cy.get('#delete').last().click()
+        cy.get('#delete').last().click()
     })
 
     it('headers are shown', function () {
@@ -15,7 +28,6 @@ describe('Battle app', function () {
             cy.contains('Create new warrior:')
             cy.get('#title')
             cy.get('#image')
-            cy.get('#create-button').click()
         })
 
         it('createForm is hidden', function () {
@@ -31,12 +43,12 @@ describe('Battle app', function () {
             cy.contains('play a battle').click()
             cy.contains('Choose first player:')
             cy.contains('Choose second player:')
-            cy.get('#fight').click()
+            cy.get('#fight')
         })
 
         it('fight is hidden', function () {
             cy.contains('play a battle').click()
-            cy.contains('cancel').click()
+            cy.get('#cancelFight').click()
             cy.contains('Choose first player:').should('not.not.exist')
             cy.contains('Choose second player:').should('not.not.exist')
             cy.get('#fight').should('not.not.exist')
