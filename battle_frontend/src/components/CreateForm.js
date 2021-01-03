@@ -21,7 +21,7 @@ const CreateForm = ({warriors, setWarriors, setCreateVisible}) => {
     const fileOnChange = (e) => {
         let file = e.target.files[0]
 
-        if(file){
+        if (file) {
             const reader = new FileReader()
             reader.onload = handleReaderLoaded
             reader.readAsBinaryString(file)
@@ -34,17 +34,22 @@ const CreateForm = ({warriors, setWarriors, setCreateVisible}) => {
         setNewFile(x)
     }
 
-    return(
+    return (
         <div>
             <h3>Create new warrior:</h3>
             <form onSubmit={handleCreate}>
-                <div>
-                    Name: <input id="title" type="text" value={newName} onChange={({target}) =>
-                    setNewName(target.value)}/>
-                    Picture: <input id="image" type="file" accept=".jpeg, .png, .jpg" onChange={fileOnChange}/>
+                <div className="form-group col-md-6">
+                    <label>Name:</label>
+                    <input className="form-control" id="title" type="text" value={newName}
+                           onChange={({target}) =>
+                               setNewName(target.value)}/>
+                    <label>Picture:</label>
+                    <input className="form-control-file" id="image" type="file" accept=".jpeg, .png, .jpg"
+                           onChange={fileOnChange}/>
+                    <button className="btn btn-primary mr-1 mt-3 mb-2" id="create-button" type="submit">add</button>
+                    <button className="btn btn-secondary mt-3 mb-2" onClick={() => setCreateVisible(false)}>cancel
+                    </button>
                 </div>
-                <button className="btn btn-primary mr-1 mt-2 mb-2" id="create-button" type="submit">add</button>
-                <button className="btn btn-secondary mt-2 mb-2" onClick={() => setCreateVisible(false)}>cancel</button>
             </form>
         </div>
     )
