@@ -1,10 +1,11 @@
-##ServerApp
-Battle is a simple random game with Java backend and React frontend, 
-running on http server, port 8080
+##BattleApp
+BattleApp is a simple random game with Java backend and React frontend
 
 ###backend:
+at first setup mongo database
+
 ####Makefile
-build app, need to set environmental variables: DB, DB_PASS, DB_USER
+build app, need to set env variables: DB, DB_PASS, DB_USER
 ```bat
 $ make build
 ```
@@ -12,7 +13,7 @@ run app
 ```bat
 $ make run
 ```
-run tests, need to export environmental variables: DB, DB_PASS, DB_USER
+run tests, need to export env variables: DB, DB_PASS, DB_USER
 ```bat
 $ make test
 ```
@@ -20,13 +21,29 @@ build docker image
 ```bat
 $ make docker_build
 ```
-run docker image, use variables DB, DB_PASS, DB_USER
+run docker image, set variables DB, DB_PASS, DB_USER
 ```bat
-$ docker run -it --rm -p 8080:8080 -e DB='' -e DB_PASS='' -e DB_USER='' battle_backend
+$ make docker_run DB=... DB_PASS=... DB_USER=...
 ```
 ###frontend
 
-build docker image
+install dependencies
+```bat
+$ npm install
+```
+run development server
+```bat
+$ npm start
+```
+run jest tests
+```bat
+$ CI=true npm test
+```
+run cypress tests
+```bat
+$ npm run cypress:open
+```
+build production docker image
 ```bat
 $ docker build -t battle_frontend .
 ```
@@ -36,7 +53,7 @@ $ docker run -it --rm -p 1337:80 battle_frontend
 ```
 ###backend+frontend
 
-run both, use variables DB, DB_PASS, DB_USER
+run both, set env variables in .env file (DB, DB_PASS, DB_USER) 
 ```bat
 $ docker-compose up -d
 ```
