@@ -31,7 +31,6 @@ const CreateForm = ({warriors, setWarriors, setCreateVisible}) => {
     const handleReaderLoaded = (readerEvent) => {
         let binaryString = readerEvent.target.result
         const x = btoa(binaryString)
-        console.log("loaded", x)
         setNewFile(x)
     }
 
