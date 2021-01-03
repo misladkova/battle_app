@@ -1,10 +1,10 @@
-##BattleApp
+## BattleApp
 BattleApp is a simple random game with Java backend and React frontend
 
-###backend:
+### backend:
 at first setup mongo database
 
-####Makefile
+#### Makefile
 build app, need to set env variables: DB, DB_PASS, DB_USER
 ```bat
 $ make build
@@ -25,7 +25,7 @@ run docker image, set variables DB, DB_PASS, DB_USER
 ```bat
 $ make docker_run DB=... DB_PASS=... DB_USER=...
 ```
-###frontend
+### frontend
 
 install dependencies
 ```bat
@@ -51,7 +51,7 @@ run docker image
 ```bat
 $ docker run -it --rm -p 1337:80 battle_frontend
 ```
-###backend+frontend
+### backend+frontend
 
 run both, set env variables in .env file (DB, DB_PASS, DB_USER) 
 ```bat
