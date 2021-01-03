@@ -7,7 +7,7 @@ public class Duel {
 
     private Warrior rival1;
     private Warrior rival2;
-    private String winner;
+    private int winner;
     private String id;
 
     public Duel(){ }
@@ -26,7 +26,7 @@ public class Duel {
         return rival2;
     }
 
-    public String getWinner() {
+    public int getWinner() {
         return winner;
     }
 
@@ -38,11 +38,11 @@ public class Duel {
         double result1 = rival1.getStrength()*Math.random()+ rival1.getSpeed()*Math.random()+ rival1.getToughness()*Math.random();
         double result2 = rival2.getStrength()*Math.random()+ rival2.getSpeed()*Math.random()+ rival2.getToughness()*Math.random();
         if(result1>result2) {
-            winner = rival1.getName();
+            winner = -1;
         }if(result1<result2){
-            winner = rival2.getName();
+            winner = 1;
         }else{
-            winner = "draw";
+            winner = 0;
         }
     }
 }
