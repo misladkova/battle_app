@@ -41,7 +41,7 @@ const Fight = ({options, setDuels, setFightVisible}) => {
             </select>
             <button id="fight" className="btn btn-primary mr-2 mt-2 mb-2" onClick={() =>
                 handleFight(firstSelect, secondSelect)}>fight</button>
-            <button className="btn btn-secondary mt-2 mb-2" onClick={() => setFightVisible(false)}>cancel</button>
+            <button id="cancelFight" className="btn btn-secondary mt-2 mb-2" onClick={() => setFightVisible(false)}>cancel</button>
             </div>
         </div>
     )
