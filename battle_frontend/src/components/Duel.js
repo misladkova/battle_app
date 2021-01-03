@@ -8,7 +8,7 @@ const Duel = ({duel}) => {
         winner_str = duel.rival1.name
     }
     return(
-        <li>{duel.rival1.name} vs {duel.rival2.name}, winner: {winner_str}</li>
+        <li className="list-group-item">{duel.rival1.name} vs {duel.rival2.name}, winner: {winner_str}</li>
     )
 }
 
